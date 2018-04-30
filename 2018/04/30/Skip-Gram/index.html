@@ -7,18 +7,18 @@
   
   <title>Skip-Gram | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#1.使用工具tensorflowpycharm #什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就">
+  <meta name="description" content="使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Skip-Gram">
 <meta property="og:url" content="http://yoursite.com/2018/04/30/Skip-Gram/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#1.使用工具tensorflowpycharm #什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就">
+<meta property="og:description" content="使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/04/30/Skip-Gram/pictures/Word2Vec.jpg">
-<meta property="og:updated_time" content="2018-04-30T07:50:59.809Z">
+<meta property="og:updated_time" content="2018-04-30T08:20:10.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Skip-Gram">
-<meta name="twitter:description" content="#1.使用工具tensorflowpycharm #什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就">
+<meta name="twitter:description" content="使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映">
 <meta name="twitter:image" content="http://yoursite.com/2018/04/30/Skip-Gram/pictures/Word2Vec.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -88,17 +88,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#1.使用工具<br>tensorflow<br>pycharm</p>
-<p>#什么是Word2Vec和Embeddings？<br>Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在空间嵌入到一个新的空间中去。</p>
+        <h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><p>tensorflow<br>pycharm</p>
+<h1 id="什么是Word2Vec和Embeddings？"><a href="#什么是Word2Vec和Embeddings？" class="headerlink" title="什么是Word2Vec和Embeddings？"></a>什么是Word2Vec和Embeddings？</h1><p>Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在空间嵌入到一个新的空间中去。</p>
 <p>我们从直观角度上来理解一下，cat这个单词和kitten属于语义上很相近的词，而dog和kitten则不是那么相近，iphone这个单词和kitten的语义就差的更远了。通过对词汇表中单词进行这种数值表示方式的学习（也就是将单词转换为词向量），能够让我们基于这样的数值进行向量化的操作从而得到一些有趣的结论。比如说，如果我们对词向量kitten、cat以及dog执行这样的操作：kitten - cat + dog，那么最终得到的嵌入向量（embedded vector）将与puppy这个词向量十分相近。</p>
-<p>#模型<br><img src="pictures/Word2Vec.jpg" alt=""><br><br>Skip-Gram模型的基础形式非常简单，为了更清楚地解释模型，我们先从最一般的基础模型来看Word2Vec（下文中所有的Word2Vec都是指Skip-Gram模型）。</p>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p><img src="pictures/Word2Vec.jpg" alt=""><br><br>Skip-Gram模型的基础形式非常简单，为了更清楚地解释模型，我们先从最一般的基础模型来看Word2Vec（下文中所有的Word2Vec都是指Skip-Gram模型）。</p>
 <p>Word2Vec模型实际上分为了两个部分，第一部分为建立模型，第二部分是通过模型获取嵌入词向量。Word2Vec的整个建模过程实际上与自编码器（auto-encoder）的思想很相似，即先基于训练数据构建一个神经网络，当这个模型训练好以后，我们并不会用这个训练好的模型处理新的任务，我们真正需要的是这个模型通过训练数据所学得的参数，例如隐层的权重矩阵——后面我们将会看到这些权重在Word2Vec中实际上就是我们试图去学习的“word vectors”。基于训练数据建模的过程，我们给它一个名字叫“Fake Task”，意味着建模并不是我们最终的目的。</p>
-<p>#从tensorflow上得到需要注意的细节<br>《tensorflow实战》的例程：<br>1.先统计训练文本中的所有单词的tf值<br>2.按照tf值进行排序，并用每个词在排序表中下标来表示这个词<br>3.使用embeding的方式将下标转换成一个128为的随机矩阵， 然后后面会通过计算损失函数自动更新这个矩阵， 这个embeding矩阵就代表着这个词<br>4.最后会得到一个训练好的embeding表<br>5.可以通过计算某一个词的下标在embeding表中找到与之相似度较高的词下标</p>
+<h1 id="从tensorflow上得到需要注意的细节"><a href="#从tensorflow上得到需要注意的细节" class="headerlink" title="从tensorflow上得到需要注意的细节"></a>从tensorflow上得到需要注意的细节</h1><p>《tensorflow实战》的例程：<br>1.先统计训练文本中的所有单词的tf值<br>2.按照tf值进行排序，并用每个词在排序表中下标来表示这个词<br>3.使用embeding的方式将下标转换成一个128为的随机矩阵， 然后后面会通过计算损失函数自动更新这个矩阵， 这个embeding矩阵就代表着这个词<br>4.最后会得到一个训练好的embeding表<br>5.可以通过计算某一个词的下标在embeding表中找到与之相似度较高的词下标</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjglyenkh000224nwo3ij8b9y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjglz4jnr000074nwzgvsjco1" class="article-share-link">Share</a>
       
       
     </footer>
