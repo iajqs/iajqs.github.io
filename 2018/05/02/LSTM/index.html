@@ -16,7 +16,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://iajqs.github.io/img/LSTM3-chain.png">
 <meta property="og:image" content="https://iajqs.github.io/img/LSTM2-notation.png">
-<meta property="og:updated_time" content="2018-05-02T11:32:34.733Z">
+<meta property="og:updated_time" content="2018-05-02T11:34:18.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LSTM-tensorflow">
 <meta name="twitter:description" content="LSTM简介（抄自《tensorflow实战》）LSTM是Schmidhuber教授于1997年提出，它天生就是为了解决长程依赖而设计的，不需要特别复杂地调试超参数，默认就可以记住长期的信息。LSTM的内部结构相比RNN更复杂，如图1-1所示，其中包含了4层神经网络，其中小圆圈是point-wise的操作，比如向量加法、点乘等，而小矩形则代表一层可以学习参数的神经网络。LSTM单元上面的那条直线代">
@@ -107,14 +107,13 @@
 </ul>
 <h4 id="2-创建模型"><a href="#2-创建模型" class="headerlink" title="2.创建模型"></a>2.创建模型</h4><h4 id="构建LSTM单元"><a href="#构建LSTM单元" class="headerlink" title="构建LSTM单元"></a>构建LSTM单元</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lstm_cell</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">### size = hidden_size</span></span><br><span class="line">    <span class="comment">### state_is_tuple mean 2-tuple 也就是二元</span></span><br><span class="line">    <span class="keyword">return</span> tf.contrib.rnn.BasicLSTMCell(</span><br><span class="line">        size, forget_bias = <span class="number">0.0</span>, state_is_tuple = <span class="keyword">True</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="comment">## set the lstm_cell function to attn_cell</span></span><br><span class="line">attn_cell = lstm_cell</span><br><span class="line"><span class="comment">## if training and the config.keep_prob &lt; 1</span></span><br><span class="line"><span class="comment">### then add the Dropout layer to the lstm_cell</span></span><br><span class="line"><span class="keyword">if</span> is_training <span class="keyword">and</span> config.keep_prob &lt; <span class="number">1</span>:</span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">attn_cell</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="comment">#### let the lstm_cell()'s output as the input for DropoutWrapper</span></span><br><span class="line">        <span class="keyword">return</span> tf.contrib.rnn.DropoutWrapper(</span><br><span class="line">            lstm_cell(), output_keep_prob = config.keep_prob</span><br><span class="line">        )</span><br><span class="line"><span class="comment">## pile the lstm_cell (i think here should be attn_cell) num_layers times</span></span><br><span class="line">cell = tf.contrib.rnn.MultiRNNCell(</span><br><span class="line">    [attn_cell() <span class="keyword">for</span> _ <span class="keyword">in</span> range(config.num_layers)],</span><br><span class="line">    state_is_tuple = <span class="keyword">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">self._initial_state = cell.zero_state(batch_size, tf.float32)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>这里需要注意，<code>LSTM单元</code>可以读入一个单词并结合之前储存的状态<code>state</code>计算下一个单词出现的概率分布，并且每次读取一个单词后它的状态<code>state</code>会被更新。<ul>
+<li>这里需要注意，<code>LSTM单元</code>可以读入一个单词并结合之前储存的状态<code>state</code>计算下一个单词出现的概率分布，并且每次读取一个单词后它的状态<code>state</code>会被更新。</li>
 <li><font color="#FF0000">这里我并不是很理解使用<code>rnn.MultiRNNCell</code>将前面的<code>lstm_cell</code>多层堆叠到<code>cell</code>具体是什么意思，难道是说两个<code>LSTM单元</code>连接在一起（参考图1-1）吗？暂时只能这么理解了。</font></li>
-</ul>
-</li>
 <li><p><font color="#FF0000">并不理解<code>tf.contrib.rnn.DropoutWrapper</code>的具体作用,难道是所谓的：</font></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">状态state在这条隧道中传递时，LSTM单元可以对其添加或删减信息，这些对信息流的修改操作由LSTM中的Gates控制。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>然而我依旧不能下定论</p>
+<ul>
+<li>然而我依旧不能下定论</li>
+</ul>
 </li>
 </ul>
 <h4 id="embedding"><a href="#embedding" class="headerlink" title="embedding"></a>embedding</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## limit the caculate operation in cpu</span></span><br><span class="line"><span class="keyword">with</span> tf.device(<span class="string">"/cpu:0"</span>):</span><br><span class="line">    <span class="comment">### embedding the data</span></span><br><span class="line">    embedding = tf.get_variable(</span><br><span class="line">        <span class="string">"embedding"</span>, [vocab_size, size], dtype=tf.float32</span><br><span class="line">    )</span><br><span class="line">    <span class="comment">### get the embed of input_.input_data from embedding</span></span><br><span class="line">    inputs = tf.nn.embedding_lookup(embedding, input_.input_data)</span><br></pre></td></tr></table></figure>
@@ -145,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgp0wfgf000098nwi6r9rmvz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgp0xpom0000p4nwc814sv9b" class="article-share-link">Share</a>
       
       
     </footer>
