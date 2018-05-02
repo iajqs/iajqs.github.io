@@ -74,7 +74,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="LSTM简介（抄自《tensorflow实战》）"><a href="#LSTM简介（抄自《tensorflow实战》）" class="headerlink" title="LSTM简介（抄自《tensorflow实战》）"></a>LSTM简介（抄自《tensorflow实战》）</h1><p>LSTM是Schmidhuber教授于1997年提出，它天生就是为了解决长程依赖而设计的，不需要特别复杂地调试超参数，默认就可以记住长期的信息。LSTM的内部结构相比RNN更复杂，如图1-1所示，其中包含了4层神经网络，其中小圆圈是point-wise的操作，比如向量加法、点乘等，而小矩形则代表一层可以学习参数的神经网络。LSTM单元上面的那条直线代表了LSTM的状态state，它会贯穿所有串联在一起的LSTM单元，从第一个LSTM单元一直流向最后一个LSTM单元，其中只有少量的线性干预和改变。状态state在这条隧道中传递时，LSTM单元可以对其添加或删减信息，这些对信息流的修改操作由LSTM中的Gates控制。这些Gates中包含了一个Sigmoid层和一个向量点乘的操作，这个Sigmoid层的输出是0到1之间的值（这个sigmoid的长相还挺奇怪呀），它直接控制了信息传递的比例。如果为0代表不允许信息传递，为1则代表让信息全部通过。每个LSTM单元中包含了3个这样的Gates，用来维护和控制单元的状态信息。凭借对状态信息的储存和修改，LSTM单元就可以实现长程记忆<br><img src="https://github.com/iajqs/iajqs.github.io/tree/master/img/LSTM3-chain.png" alt=""><br></p>
+        <h1 id="LSTM简介（抄自《tensorflow实战》）"><a href="#LSTM简介（抄自《tensorflow实战》）" class="headerlink" title="LSTM简介（抄自《tensorflow实战》）"></a>LSTM简介（抄自《tensorflow实战》）</h1><p>LSTM是Schmidhuber教授于1997年提出，它天生就是为了解决长程依赖而设计的，不需要特别复杂地调试超参数，默认就可以记住长期的信息。LSTM的内部结构相比RNN更复杂，如图1-1所示，其中包含了4层神经网络，其中小圆圈是point-wise的操作，比如向量加法、点乘等，而小矩形则代表一层可以学习参数的神经网络。LSTM单元上面的那条直线代表了LSTM的状态state，它会贯穿所有串联在一起的LSTM单元，从第一个LSTM单元一直流向最后一个LSTM单元，其中只有少量的线性干预和改变。状态state在这条隧道中传递时，LSTM单元可以对其添加或删减信息，这些对信息流的修改操作由LSTM中的Gates控制。这些Gates中包含了一个Sigmoid层和一个向量点乘的操作，这个Sigmoid层的输出是0到1之间的值（这个sigmoid的长相还挺奇怪呀），它直接控制了信息传递的比例。如果为0代表不允许信息传递，为1则代表让信息全部通过。每个LSTM单元中包含了3个这样的Gates，用来维护和控制单元的状态信息。凭借对状态信息的储存和修改，LSTM单元就可以实现长程记忆<br><img src="https://github.com/iajqs/iajqs.github.io/blob/master/img/LSTM3-chain.png" alt=""><br></p>
 <p><center>图1 LSTM结构示意图</center><br><img src="https://github.com/iajqs/iajqs.github.io/blob/master/img/LSTM2-notation.png" alt=""><br></p>
 <h1 id="LSTM的tensorflow实现和注解"><a href="#LSTM的tensorflow实现和注解" class="headerlink" title="LSTM的tensorflow实现和注解"></a>LSTM的tensorflow实现和注解</h1><p>下面只讲解主要的部分，其他内容请查看《tensorflow实战》</p>
 <h4 id="1-导入数据："><a href="#1-导入数据：" class="headerlink" title="1.导入数据："></a>1.导入数据：</h4><ul>
@@ -128,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgp069460000d8nw3o7kstbn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgp0hw3u0002u0nwx2a7ocny" class="article-share-link">Share</a>
       
       
     </footer>
@@ -170,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgp0694u0002d8nwsck7tvxi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgp0hw3q0001u0nwmd20olv1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -215,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgp0694f0001d8nwro2cik20" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgp0hw3i0000u0nwdqg1xbmf" class="article-share-link">Share</a>
       
       
     </footer>
