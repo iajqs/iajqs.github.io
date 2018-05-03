@@ -62,6 +62,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-plan" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/03/plan/" class="article-date">
+  <time datetime="2018-05-03T01:19:28.000Z" itemprop="datePublished">2018-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/03/plan/">记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="需完善博客"><a href="#需完善博客" class="headerlink" title="需完善博客"></a>需完善博客</h1><ol>
+<li><a href="../../02/LSTM/index.html">LSTM</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjgpucmtj0002ugnws2r6w288" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-LSTM" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/02/LSTM/" class="article-date">
@@ -111,19 +150,11 @@
 </ul>
 </li>
 </ul>
-<h4 id="embedding"><a href="#embedding" class="headerlink" title="embedding"></a>embedding</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## limit the caculate operation in cpu</span></span><br><span class="line"><span class="keyword">with</span> tf.device(<span class="string">"/cpu:0"</span>):</span><br><span class="line">    <span class="comment">### embedding the data</span></span><br><span class="line">    embedding = tf.get_variable(</span><br><span class="line">        <span class="string">"embedding"</span>, [vocab_size, size], dtype=tf.float32</span><br><span class="line">    )</span><br><span class="line">    <span class="comment">### get the embed of input_.input_data from embedding</span></span><br><span class="line">    inputs = tf.nn.embedding_lookup(embedding, input_.input_data)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>注这里果然还是需要测试一下<code>input_.input_data</code>的数据是什么样的，我怀疑<code>PTBinput</code>返回的是想<code>Word2Vec</code>那样的<code>top</code>编号</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## if is_training and keep_prob &lt; 1, add the dropout</span></span><br><span class="line"><span class="comment">### the dropout(inputs, keep_prob) is mean to get (keep_prob / 1) x 100% data from input</span></span><br><span class="line"><span class="keyword">if</span> is_training <span class="keyword">and</span> config.keep_prob &lt; <span class="number">1</span>:</span><br><span class="line">    inputs = tf.nn.dropout(inputs, config.keep_prob)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这里发现， 对输入数据也进行了<code>dropout</code>操作，得到<code>新的inputs</code>，后面的操作中， 将会把这个<code>新的inputs</code>输入给<code>cell</code>,那岂不是进行了两次<code>dropout</code> </p>
-</li>
-</ul>
-<h4 id="使用模型"><a href="#使用模型" class="headerlink" title="使用模型"></a>使用模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">outputs = []</span><br><span class="line">state = self._initial_state</span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"RNN"</span>):</span><br><span class="line">    <span class="comment">### set the loop size is num_steps</span></span><br><span class="line">    <span class="keyword">for</span> time_step <span class="keyword">in</span> range(num_steps):</span><br><span class="line">        <span class="comment">### at the sencond loop , use the tf.get_variable_scope().reuse_variables() set the reuse variables</span></span><br><span class="line">        <span class="keyword">if</span> time_step &gt; <span class="number">0</span>:</span><br><span class="line">            tf.get_variable_scope().reuse_variables()</span><br><span class="line">        <span class="comment">### input the (inputs, state) to the LSTM cell</span></span><br><span class="line">        <span class="comment">### get the result(cell_output) and the updated state</span></span><br><span class="line">        <span class="comment">#### input[a, b, c]</span></span><br><span class="line">            <span class="comment">##### a: the index of sample in one batch</span></span><br><span class="line">            <span class="comment">##### b: the index of word in one sample</span></span><br><span class="line">            <span class="comment">##### c: the dimension number of the word's vector</span></span><br><span class="line">        (cell_output, state) = cell(inputs[:, time_step, :], state)</span><br><span class="line">        <span class="comment">### add the result to the output list</span></span><br><span class="line">        outputs.append(cell_output)</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>num_step</code> 反向传播时可以展开的步数</li>
-<li><code>(cell_output, state) = cell(inputs[:, time_step, :], state)</code> 其中 <code>input[a, b, c]</code> 的a表示batch中的第几个样本，b表示样本中的第几个单词，c表示单词的向量表达式的维度，<code>inputs[:, time_step, :]</code>而这里表示的是所有样本的第time_step个单词。<font color="#FF0000">（这个输入好特别， 又是一个需要研究一下的点）</font></li>
-</ul>
+<h4 id="embedding"><a href="#embedding" class="headerlink" title="embedding"></a>embedding</h4><font color="#FF0000">测试</font><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## limit the caculate operation in cpu</span></span><br><span class="line"><span class="keyword">with</span> tf.device(<span class="string">"/cpu:0"</span>):</span><br><span class="line">    <span class="comment">### embedding the data</span></span><br><span class="line">    embedding = tf.get_variable(</span><br><span class="line">        <span class="string">"embedding"</span>, [vocab_size, size], dtype=tf.float32</span><br><span class="line">    )</span><br><span class="line">    <span class="comment">### get the embed of input_.input_data from embedding</span></span><br><span class="line">    <span class="comment">#### inputs: inputs[batch_size, word_size, vector_size]</span></span><br><span class="line">    &lt;!-- 晚上回去测试一下 --&gt;</span><br><span class="line">    <span class="comment">#### batch_size = config.batch_size</span></span><br><span class="line">    <span class="comment">#### word_size = config.num_steps</span></span><br><span class="line">    <span class="comment">#### vector_size = config.vector_size</span></span><br><span class="line">    inputs = tf.nn.embedding_lookup(embedding, input_.input_data)</span><br></pre></td></tr></table></figure><br><br><em> 注这里果然还是需要测试一下<code>input_.input_data</code>的数据是什么样的，我怀疑<code>PTBinput</code>返回的是想<code>Word2Vec</code>那样的<code>top</code>编号<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## if is_training and keep_prob &lt; 1, add the dropout</span></span><br><span class="line"><span class="comment">### the dropout(inputs, keep_prob) is mean to get (keep_prob / 1) x 100% data from input</span></span><br><span class="line"><span class="keyword">if</span> is_training <span class="keyword">and</span> config.keep_prob &lt; <span class="number">1</span>:</span><br><span class="line">    inputs = tf.nn.dropout(inputs, config.keep_prob)</span><br></pre></td></tr></table></figure>
+
+</em> 这里发现， 对输入数据也进行了<code>dropout</code>操作，得到<code>新的inputs</code>，后面的操作中， 将会把这个<code>新的inputs</code>输入给<code>cell</code>,那岂不是进行了两次<code>dropout</code><br><br>#### 使用模型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">outputs = []</span><br><span class="line">state = self._initial_state</span><br><span class="line"><span class="keyword">with</span> tf.variable_scope(<span class="string">"RNN"</span>):</span><br><span class="line">    <span class="comment">### set the loop size is num_steps</span></span><br><span class="line">    <span class="keyword">for</span> time_step <span class="keyword">in</span> range(num_steps):</span><br><span class="line">        <span class="comment">### at the sencond loop , use the tf.get_variable_scope().reuse_variables() set the reuse variables</span></span><br><span class="line">        <span class="keyword">if</span> time_step &gt; <span class="number">0</span>:</span><br><span class="line">            tf.get_variable_scope().reuse_variables()</span><br><span class="line">        <span class="comment">### input the (inputs, state) to the LSTM cell</span></span><br><span class="line">        <span class="comment">### get the result(cell_output) and the updated state</span></span><br><span class="line">        <span class="comment">#### input[a, b, c]</span></span><br><span class="line">            <span class="comment">##### a: the index of sample in one batch</span></span><br><span class="line">            <span class="comment">##### b: the index of word in one sample</span></span><br><span class="line">            <span class="comment">##### c: the dimension number of the word's vector</span></span><br><span class="line">        (cell_output, state) = cell(inputs[:, time_step, :], state)</span><br><span class="line">        <span class="comment">### add the result to the output list</span></span><br><span class="line">        outputs.append(cell_output)</span><br></pre></td></tr></table></figure><br><br><em> <code>num_step</code> 反向传播时可以展开的步数
+</em> <code>(cell_output, state) = cell(inputs[:, time_step, :], state)</code> 其中 <code>input[a, b, c]</code> 的a表示batch中的第几个样本，b表示样本中的第几个单词，c表示单词的向量表达式的维度，<code>inputs[:, time_step, :]</code>而这里表示的是所有样本的第time_step个单词。<font color="#FF0000">（这个输入好特别， 又是一个需要研究一下的点）</font>
+
 <h4 id="设置模型配置信息"><a href="#设置模型配置信息" class="headerlink" title="设置模型配置信息"></a>设置模型配置信息</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># init the SamllConfig, ok, this is according with the modelize programing</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmallConfig</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment">## init the weigth of the net</span></span><br><span class="line">    init_scale = <span class="number">0.1</span></span><br><span class="line">    <span class="comment">## set the learning rate</span></span><br><span class="line">    learning_rate = <span class="number">1.0</span></span><br><span class="line">    <span class="comment">## set the gradient's max norm</span></span><br><span class="line">    max_grad_norm = <span class="number">5</span></span><br><span class="line">    <span class="comment">## set the Stackingable layers</span></span><br><span class="line">    num_layers = <span class="number">2</span></span><br><span class="line">    <span class="comment">## LSTM gradient backpropagation's step</span></span><br><span class="line">    num_steps = <span class="number">20</span></span><br><span class="line">    <span class="comment">## the number of hidden node</span></span><br><span class="line">    hidden_size = <span class="number">200</span></span><br><span class="line">    <span class="comment">## initial learning rate could train times</span></span><br><span class="line">    max_epoch = <span class="number">4</span></span><br><span class="line">    <span class="comment">## altogether cound train times</span></span><br><span class="line">    max_max_epoch = <span class="number">13</span></span><br><span class="line">    <span class="comment">## dropout layer retain proportion</span></span><br><span class="line">    keep_prob = <span class="number">1.0</span></span><br><span class="line">    <span class="comment">## this is the learning rate's decay speed</span></span><br><span class="line">    lr_decay = <span class="number">0.5</span></span><br><span class="line">    <span class="comment">## batch_size is batch's size</span></span><br><span class="line">    batch_size = <span class="number">20</span></span><br><span class="line">    <span class="comment">## vocabulary's size</span></span><br><span class="line">    vocab_size = <span class="number">10000</span></span><br></pre></td></tr></table></figure>
 <h4 id="3-训练"><a href="#3-训练" class="headerlink" title="3.训练"></a>3.训练</h4><ul>
 <li>其中输入为session会话， </li>
@@ -139,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgp0xpom0000p4nwc814sv9b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgpucmtf0001ugnw2pm2ggg9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgp0xpp70002p4nwvtked5mf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgpucmtl0003ugnwytd86stj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgp0xpp50001p4nwli0k4jo3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgpucmt40000ugnw6ybgkddj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -265,6 +296,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/03/plan/">记录</a>
+          </li>
         
           <li>
             <a href="/2018/05/02/LSTM/">LSTM-tensorflow</a>
