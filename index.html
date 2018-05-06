@@ -150,7 +150,7 @@
 <h4 id="3-7启动DApp"><a href="#3-7启动DApp" class="headerlink" title="3.7启动DApp"></a>3.7启动DApp</h4><p>一开始，我看的教程是使用一下命令来启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; truffle deploy</span><br><span class="line">\demo&gt; truffle serve</span><br></pre></td></tr></table></figure></p>
 <p>但是，这样会报这样的错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Serving static assets <span class="keyword">in</span> .\build on port 8080...</span><br><span class="line">TypeError: fsevents is not a constructor</span><br></pre></td></tr></table></figure></p>
 <p>一些文章的解释说，是因为<code>truffle</code>的版本太高，建议删除并安装<a href="mailto:`truffle@3.2.1" target="_blank" rel="noopener">`truffle@3.2.1</a><code>，执行制定的操作后，发现安装不上</code><a href="mailto:truffle@3.2.1" target="_blank" rel="noopener">truffle@3.2.1</a>`，宣告失败，最后找到一个别的方法启动，代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; npm run dev</span><br></pre></td></tr></table></figure></p>
-<p>在浏览器里访问<a href="http://localhost:8081即可，我的端口号是8081，汇智网教程的是8080，以你输入`npm" target="_blank" rel="noopener">http://localhost:8081即可，我的端口号是8081，汇智网教程的是8080，以你输入`npm</a> run dev`之后控制台打印的网址为准。<br><img src="https://iajqs.github.io/img/MetaCoin界面.jpg" alt=""><br>在最后的页面显示中，还是会报错，错误信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;There was an error fetching your accounts.&quot;</span><br></pre></td></tr></table></figure></p>
+<p>在浏览器里访问<a href="http://localhost:8081" target="_blank" rel="noopener">http://localhost:8081</a> 即可，我的端口号是8081，汇智网教程的是8080，以你输入<code>npm run dev</code>之后控制台打印的网址为准。<br><img src="https://iajqs.github.io/img/MetaCoin界面.jpg" alt=""><br>在最后的页面显示中，还是会报错，错误信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;There was an error fetching your accounts.&quot;</span><br></pre></td></tr></table></figure></p>
 <p>打开控制台，发现显示无法链接<code>127.0.0.1:9545</code>，打开项目文件夹下的app\javascripts，打开app.js，找到以下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.web3 = <span class="keyword">new</span> Web3(<span class="keyword">new</span> Web3.providers.HttpProvider(<span class="string">"http://127.0.0.1:9545"</span>));</span><br></pre></td></tr></table></figure></p>
 <p>改为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.web3 = <span class="keyword">new</span> Web3(<span class="keyword">new</span> Web3.providers.HttpProvider(<span class="string">"http://localhost:8545"</span>));</span><br></pre></td></tr></table></figure></p>
 <p>刷新网页，发现还有错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: The method net_version does not exist/is not available</span><br></pre></td></tr></table></figure></p>
@@ -159,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjgu9ky1m0000o4nwf1ytuysn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjgu9ol990004nsnwqt17lgbm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -206,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjgu9ky200001o4nwblkt0ly1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjgu9ol970003nsnwr16eytah" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgu9ky240003o4nw1bpo6nol" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgu9ol8u0000nsnwik3ojmv0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -327,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgu9ky260004o4nwzhspo8wp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgu9ol910001nsnwd5vqt4zg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgu9ky220002o4nwyrscqs59" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgu9ol950002nsnw7vb2sxdp" class="article-share-link">Share</a>
       
       
     </footer>
