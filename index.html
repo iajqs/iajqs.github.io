@@ -62,6 +62,113 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-以太坊Dapp开发环境配置与实践" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/06/以太坊Dapp开发环境配置与实践/" class="article-date">
+  <time datetime="2018-05-06T03:34:55.000Z" itemprop="datePublished">2018-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/06/以太坊Dapp开发环境配置与实践/">以太坊Dapp开发环境配置与实践</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、工具"><a href="#一、工具" class="headerlink" title="一、工具"></a>一、工具</h1><h2 id="需要安装的工具列表"><a href="#需要安装的工具列表" class="headerlink" title="需要安装的工具列表"></a>需要安装的工具列表</h2><p>如果你不喜欢把时间浪费在搭建开发环境上，可以使用汇智网的在线练习环境及教程：以太坊 DApp 开发实战入门–<a href="http://xc.hubwiz.com/course/5a952991adb3847553d205d1?affid=v2ex7878" target="_blank" rel="noopener">http://xc.hubwiz.com/course/5a952991adb3847553d205d1?affid=v2ex7878</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cnpm</span><br><span class="line">Node.js</span><br><span class="line">Geth</span><br><span class="line">solc</span><br><span class="line">web3</span><br><span class="line">truffle</span><br><span class="line">webpack</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h2><p>使用淘宝镜像安装， 速度会比较快<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure></p>
+<p>安装完成后创建一个软链接<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo ln -s /home/ubuntu/node-v4.5.0-linux-x86/bin/cnpm /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以在全局使用cnpm了</p>
+<p>查看<code>cnpm</code>版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm -v</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h2><p>直接登录官网下载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">官网地址：http://nodejs.cn/</span><br></pre></td></tr></table></figure></p>
+<p>下载后直接安装即可。安装完毕，打开控制台窗口，查看nodejs版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; node -v</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装Geth"><a href="#安装Geth" class="headerlink" title="安装Geth"></a>安装Geth</h2><p>登录官网下载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载地址：https://geth.ethereum.org/downloads/</span><br></pre></td></tr></table></figure></p>
+<p>下载安装后，查看geth版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; geth version</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装solidity编译器"><a href="#安装solidity编译器" class="headerlink" title="安装solidity编译器"></a>安装solidity编译器</h2><p>使用cnpm安装，npm是真的强大，可以直接安装好多东西<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install -g solc</span><br></pre></td></tr></table></figure></p>
+<p>安装完毕后， 执行命令验证安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; solcjs -version</span><br></pre></td></tr></table></figure></p>
+<p>执行出错，没有解决。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; Must provide a file</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装web3"><a href="#安装web3" class="headerlink" title="安装web3"></a>安装web3</h2><p>由于我使用的操作系统是git，需要先安装windows版的git命令行。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm install -g web3@0.20.2</span><br></pre></td></tr></table></figure></p>
+<p>如果直接使用npm进行安装，会报错，可能是需要翻墙的关系。</p>
+<h2 id="安装truffle"><a href="#安装truffle" class="headerlink" title="安装truffle"></a>安装truffle</h2><p>使用cnpm安装truffle开发框架<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm install -g truffle</span><br></pre></td></tr></table></figure></p>
+<p>查看truffle版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; truffle.cmd version</span><br></pre></td></tr></table></figure></p>
+<p>windows系统下， 使用truffle要加上.cmd后缀，即使用windows的内核脚本文件，具体原因有待探究</p>
+<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><p>使用cnpm安装webpack<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm install -g webpack@3.11.0</span><br></pre></td></tr></table></figure></p>
+<p>查看webpack版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; webpack -v</span><br></pre></td></tr></table></figure></p>
+<h1 id="二、运行私链节点"><a href="#二、运行私链节点" class="headerlink" title="二、运行私链节点"></a>二、运行私链节点</h1><h2 id="2-1-创世块配置"><a href="#2-1-创世块配置" class="headerlink" title="2.1 创世块配置"></a>2.1 创世块配置</h2><p>创建一个文件夹，在其中创建私链的创世块配置文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; mkdir node1</span><br><span class="line">&gt; <span class="built_in">cd</span> node1</span><br><span class="line">\node1&gt; notepad private.json</span><br></pre></td></tr></table></figure></p>
+<p>然后编辑内容如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"config"</span>:&#123;</span><br><span class="line">        <span class="attr">"chainId"</span>:<span class="number">7878</span>,</span><br><span class="line">        <span class="attr">"homesteadBlock"</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip155Block"</span>:<span class="number">0</span>,</span><br><span class="line">        <span class="attr">"eip158Block"</span>:<span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    "difficulty":"200",     //挖矿难度，值越小难度越小</span><br><span class="line">    "gasLimit":"0xffffffff", //油费上限值，由于我们是私链，所以上限值设置为最大</span><br><span class="line">    "alloc":&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>config.chainId</code>：用来声明以太坊网络编号，选择一个大于10的数字即可<br><code>difficulty</code>：用来声明挖矿难度，越小的值难度越低，也就能更快速地出块<br><code>gasLimit</code>：油费上限值，在区块链上进行交易，需要消耗gas，如果需要消耗的gas超过了gasLimit，区块链将退回交易请求，不允执行</p>
+<h2 id="初始化私链节点"><a href="#初始化私链节点" class="headerlink" title="初始化私链节点"></a>初始化私链节点</h2><p>执行geth的init命令初始化私链节点：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\node1&gt; geth --datadir .\data init private.json</span><br></pre></td></tr></table></figure></p>
+<p>这会在node1目录下创建data目录，用来保存区块数据及账户信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\node1&gt; dir</span><br><span class="line">data private.json</span><br></pre></td></tr></table></figure></p>
+<p>将上述命令写入一个脚本init.cmd里，便于下次初始化私链节点<br>内容如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth --data .\data init private.json</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-3-启动私链节点"><a href="#2-3-启动私链节点" class="headerlink" title="2.3 启动私链节点"></a>2.3 启动私链节点</h2><p>从指定的私链数据目录启动并设定一个不同的网络编号来启动节点：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\node1&gt; geth --rpc --rpcaddr 0.0.0.0 --rpccorsdomain <span class="string">"*"</span> --datadir .\data --networdid 7878 console</span><br></pre></td></tr></table></figure></p>
+<p>这个也同样可以使用一个脚本console.cmd来保存以上的命令，便于下次启动私链节点</p>
+<p>以后启动节点，只要直接执行这个脚本即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\node1&gt; console.cmd</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-4-账户管理"><a href="#2-4-账户管理" class="headerlink" title="2.4 账户管理"></a>2.4 账户管理</h2><h4 id="2-4-1查看账户列表"><a href="#2-4-1查看账户列表" class="headerlink" title="2.4.1查看账户列表"></a>2.4.1查看账户列表</h4><p>首先， 执行<code>console.cmd</code>进入geth控制台，使用eth对象的accounts属性查看目前的账户列表：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.accounts</span><br><span class="line">[]</span><br></pre></td></tr></table></figure></p>
+<p>这个时候列表是空的， 我们需要创建一个用户</p>
+<h4 id="2-4-2创建新账户"><a href="#2-4-2创建新账户" class="headerlink" title="2.4.2创建新账户"></a>2.4.2创建新账户</h4><p>在geth控制台， 使用personal对象的newAccount()方法创建一个新账户，参数为密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; personal.newAccount(<span class="string">'123456'</span>)</span><br><span class="line"><span class="string">"0x79a1c7391c620882cebaffaf7b86e0c8236679a5"</span></span><br></pre></td></tr></table></figure></p>
+<p>输出就是新创建的账户地址（公钥），你的输出不会和上面的示例相同。geth会保存到数据目录下的keystore文件中。</p>
+<h4 id="2-4-3查询账户余额"><a href="#2-4-3查询账户余额" class="headerlink" title="2.4.3查询账户余额"></a>2.4.3查询账户余额</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBalance(eth.accounts[0])</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p>新创建的账户， 余额为0</p>
+<h4 id="2-4-4挖矿"><a href="#2-4-4挖矿" class="headerlink" title="2.4.4挖矿"></a>2.4.4挖矿</h4><p>在geth控制台， 执行miner对象的start()方法来启动挖矿<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.start(1)</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>start(1)</code>中的<code>1</code>表示开一个线程进行挖矿，如果不配置，就会让CPU全速运行，影响计算机的使用。</p>
+<ul>
+<li>运行一会后，主账号就会获取很多以太币，这个时候屏幕会快速刷屏，不用管，输入命令miner.stop()停止挖矿。</li>
+<li>这里有个需要注意的地方，如果是第一次挖矿，需要等待加载到100才会开始挖矿，请耐心等待<br>看到挖出一些块之后，检查账户余额：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.getBalance(eth.accounts[0])</span><br><span class="line">225000000000000000000</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>停止挖矿<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.stop()</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-4-5解锁账户"><a href="#2-4-5解锁账户" class="headerlink" title="2.4.5解锁账户"></a>2.4.5解锁账户</h4><p>在部署合约是需要一个解锁的账户。<br>在geth控制台使用personal对象的unlockAccount()方法来解锁指定的账户，参数为账户地址和账户密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; eth.unlockAccount(eth.accounts[0],<span class="string">"123456"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>三、构建示例项目</p>
+<h4 id="3-1新建DApp项目"><a href="#3-1新建DApp项目" class="headerlink" title="3.1新建DApp项目"></a>3.1新建DApp项目</h4><p>执行一下命令创建项目目录并进入该目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; mkdir demo</span><br><span class="line">&gt; <span class="built_in">cd</span> demo</span><br></pre></td></tr></table></figure></p>
+<p>接着使用truffle初始化项目框架结构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; truffle.cmd unbox webpack</span><br></pre></td></tr></table></figure></p>
+<p>很多教程是用<code>truffle init</code>,但是生成的项目会有一些问题，所以建议使用以上命令</p>
+<h4 id="3-2安装项目依赖的NPM包"><a href="#3-2安装项目依赖的NPM包" class="headerlink" title="3.2安装项目依赖的NPM包"></a>3.2安装项目依赖的NPM包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; npm install</span><br></pre></td></tr></table></figure>
+<h4 id="3-3修改truffle配置"><a href="#3-3修改truffle配置" class="headerlink" title="3.3修改truffle配置"></a>3.3修改truffle配置</h4><p>打开truffle.js配置文件，内容如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Allows us to use ES6 in our migrations and tests.</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'babel-register'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  networks: &#123;</span><br><span class="line">    development: &#123;</span><br><span class="line">      host: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">      port: <span class="number">8545</span>,</span><br><span class="line">      network_id: <span class="string">'*'</span> <span class="comment">// Match any network id</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>其中<code>host:127.0.0.1</code>等同于<code>host:localhost</code></li>
+<li>端口号<code>port</code>需要根据私链所在的端口号来设置， 如果没有特别制定，geth默认端口号为8545</li>
+</ul>
+<h4 id="3-4启动节点"><a href="#3-4启动节点" class="headerlink" title="3.4启动节点"></a>3.4启动节点</h4><p>部署合约之前，我们先启动节点，直接执行我们上面保存的<code>console.cmd</code></p>
+<h4 id="3-5编译合约"><a href="#3-5编译合约" class="headerlink" title="3.5编译合约"></a>3.5编译合约</h4><p>执行一下命令编译项目合约<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; truffle.cmd compile</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-6部署合约"><a href="#3-6部署合约" class="headerlink" title="3.6部署合约"></a>3.6部署合约</h4><p>执行一下命令来部署合约：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; truffle.cmd migrate</span><br></pre></td></tr></table></figure></p>
+<p>执行部署合约之前要记得解锁账户，不然会报错。错误信息如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: authentication needed: password or unlock</span><br></pre></td></tr></table></figure></p>
+<p>如果已经正确地解锁了账户，你会看到部署过程停止在如下状态：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Replacing Migrations...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>这是因为部署合约其实就是一个交易，只要是交易就需要记录到区块链中，这个时候就需要挖矿来记录交易信息。</p>
+<p>返回geth终端窗口，查看交易池的状态：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; txpool.status</span><br><span class="line">&#123;</span><br><span class="line">    pending:1,</span><br><span class="line">    queued:0 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>显示有一个挂起的交易，开始挖矿：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.start(1)</span><br></pre></td></tr></table></figure></p>
+<p>挖出一定区块后，再查看交易池的状态：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; txpool.status</span><br><span class="line">&#123;</span><br><span class="line">    pending:0,</span><br><span class="line">    queued:0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>交易提交完成，停止挖矿<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; miner.stop()</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-7启动DApp"><a href="#3-7启动DApp" class="headerlink" title="3.7启动DApp"></a>3.7启动DApp</h4><p>一开始，我看的教程是使用一下命令来启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; truffle deploy</span><br><span class="line">\demo&gt; truffle serve</span><br></pre></td></tr></table></figure></p>
+<p>但是，这样会报这样的错误：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Serving static assets <span class="keyword">in</span> .\build on port 8080...</span><br><span class="line">TypeError: fsevents is not a constructor</span><br></pre></td></tr></table></figure></p>
+<p>一些文章的解释说，是因为<code>truffle</code>的版本太高，建议删除并安装<a href="mailto:`truffle@3.2.1" target="_blank" rel="noopener">`truffle@3.2.1</a><code>，执行制定的操作后，发现安装不上</code><a href="mailto:truffle@3.2.1" target="_blank" rel="noopener">truffle@3.2.1</a>`，宣告失败，最后找到一个别的方法启动，代码如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\demo&gt; npm run dev</span><br></pre></td></tr></table></figure></p>
+<p>在浏览器里访问<a href="http://localhost:8081即可，我的端口号是8081，汇智网教程的是8080，以你输入`npm" target="_blank" rel="noopener">http://localhost:8081即可，我的端口号是8081，汇智网教程的是8080，以你输入`npm</a> run dev`之后控制台打印的网址为准。<br><img src="https://iajqs.github.io/img/MetaCoin界面.jpg" alt=""><br>在最后的页面显示中，还是会报错，错误信息如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;There was an error fetching your accounts.&quot;</span><br></pre></td></tr></table></figure></p>
+<p>打开控制台，发现显示无法链接<code>127.0.0.1:9545</code>，打开项目文件夹下的app\javascripts，打开app.js，找到以下代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.web3 = <span class="keyword">new</span> Web3(<span class="keyword">new</span> Web3.providers.HttpProvider(<span class="string">"http://127.0.0.1:9545"</span>));</span><br></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.web3 = <span class="keyword">new</span> Web3(<span class="keyword">new</span> Web3.providers.HttpProvider(<span class="string">"http://localhost:8545"</span>));</span><br></pre></td></tr></table></figure></p>
+<p>刷新网页，发现还有错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: The method net_version does not exist/is not available</span><br></pre></td></tr></table></figure></p>
+<p>暂时没有解决，学业不精，内牛满面。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjgu9ky1m0000o4nwf1ytuysn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-plan" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/03/plan/" class="article-date">
@@ -87,10 +194,11 @@
         <h1 id="需完善博客"><a href="#需完善博客" class="headerlink" title="需完善博客"></a>需完善博客</h1><ol>
 <li><a href="../../02/LSTM/">LSTM</a></li>
 </ol>
-<h1 id="blockChain"><a href="#blockChain" class="headerlink" title="blockChain"></a>blockChain</h1><ol>
+<h1 id="blockChain"><a href="#blockChain" class="headerlink" title="blockChain"></a>blockChain</h1><ul>
+<li>打印以太零白皮书</li>
 <li>完成以太零部署智能合约（发布token）</li>
 <li>完成token发布后， 撰写整个发布流程</li>
-</ol>
+</ul>
 <h1 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h1><ol>
 <li>回实验室记录idea</li>
 </ol>
@@ -98,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjgq4y8w60000ionwopjpb5fc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjgu9ky200001o4nwblkt0ly1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgq4y8x00001ionwu6p4w0ev" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgu9ky240003o4nw1bpo6nol" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgq4y8x30002ionw95gfp1lz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgu9ky260004o4nwzhspo8wp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -264,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgq4y8x50003ionwm0pnhof7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgu9ky220002o4nwyrscqs59" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,6 +411,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/05/06/以太坊Dapp开发环境配置与实践/">以太坊Dapp开发环境配置与实践</a>
+          </li>
         
           <li>
             <a href="/2018/05/03/plan/">记录</a>
