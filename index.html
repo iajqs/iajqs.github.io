@@ -96,7 +96,7 @@
 <h2 id="安装solidity编译器"><a href="#安装solidity编译器" class="headerlink" title="安装solidity编译器"></a>安装solidity编译器</h2><p>使用cnpm安装，npm是真的强大，可以直接安装好多东西<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install -g solc</span><br></pre></td></tr></table></figure></p>
 <p>安装完毕后， 执行命令验证安装成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; solcjs -version</span><br></pre></td></tr></table></figure></p>
 <p>执行出错，没有解决。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; Must provide a file</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装web3"><a href="#安装web3" class="headerlink" title="安装web3"></a>安装web3</h2><p>由于我使用的操作系统是git，需要先安装windows版的git命令行。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm install -g web3@0.20.2</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装web3"><a href="#安装web3" class="headerlink" title="安装web3"></a>安装web3</h2><p>由于我使用的操作系统是git，需要先安装windows版的git命令行。<br>在<code>git bash</code>控制台输入以下命令(在这里卡了好久，一直以为是再cmd里输入一下命令)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm install -g web3@0.20.2</span><br></pre></td></tr></table></figure></p>
 <p>如果直接使用npm进行安装，会报错，可能是需要翻墙的关系。</p>
 <h2 id="安装truffle"><a href="#安装truffle" class="headerlink" title="安装truffle"></a>安装truffle</h2><p>使用cnpm安装truffle开发框架<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; cnpm install -g truffle</span><br></pre></td></tr></table></figure></p>
 <p>查看truffle版本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; truffle.cmd version</span><br></pre></td></tr></table></figure></p>
@@ -159,9 +159,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjgu9ol990004nsnwqt17lgbm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cji3xuyrh0004k8nwgxmy13h5" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li></ul>
+
     </footer>
   </div>
   
@@ -206,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjgu9ol970003nsnwr16eytah" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cji3xuyrc0002k8nwpyb3hbna" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjgu9ol8u0000nsnwik3ojmv0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cji3xuyqz0000k8nwj9frb5hs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,11 +325,13 @@
 <h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p><img src="../../../../img/Word2Vec.jpg" alt=""><br><br>Skip-Gram模型的基础形式非常简单，为了更清楚地解释模型，我们先从最一般的基础模型来看Word2Vec（下文中所有的Word2Vec都是指Skip-Gram模型）。</p>
 <p>Word2Vec模型实际上分为了两个部分，第一部分为建立模型，第二部分是通过模型获取嵌入词向量。Word2Vec的整个建模过程实际上与自编码器（auto-encoder）的思想很相似，即先基于训练数据构建一个神经网络，当这个模型训练好以后，我们并不会用这个训练好的模型处理新的任务，我们真正需要的是这个模型通过训练数据所学得的参数，例如隐层的权重矩阵——后面我们将会看到这些权重在Word2Vec中实际上就是我们试图去学习的“word vectors”。基于训练数据建模的过程，我们给它一个名字叫“Fake Task”，意味着建模并不是我们最终的目的。</p>
 <h1 id="从tensorflow上得到需要注意的细节"><a href="#从tensorflow上得到需要注意的细节" class="headerlink" title="从tensorflow上得到需要注意的细节"></a>从tensorflow上得到需要注意的细节</h1><p>《tensorflow实战》的例程：<br>1.先统计训练文本中的所有单词的tf值<br>2.按照tf值进行排序，并用每个词在排序表中下标来表示这个词<br>3.使用embeding的方式将下标转换成一个128为的随机矩阵， 然后后面会通过计算损失函数自动更新这个矩阵， 这个embeding矩阵就代表着这个词<br>4.最后会得到一个训练好的embeding表<br>5.可以通过计算某一个词的下标在embeding表中找到与之相似度较高的词下标</p>
+<hr>
+<h1 id="根据和学长们的讨论，这里很有必要追加一些内容"><a href="#根据和学长们的讨论，这里很有必要追加一些内容" class="headerlink" title="根据和学长们的讨论，这里很有必要追加一些内容"></a>根据和学长们的讨论，这里很有必要追加一些内容</h1><h4 id="这个Fake-Task是训练什么？计算的损失是谁的损失？"><a href="#这个Fake-Task是训练什么？计算的损失是谁的损失？" class="headerlink" title="这个Fake Task是训练什么？计算的损失是谁的损失？"></a>这个Fake Task是训练什么？计算的损失是谁的损失？</h4><p>  前面我们已经知道，我们会将词转换成embeding的形式，然后交给模型去训练，最后我们会得到一个训练好的embeding表。<br>  从整体上来看，这个embeding是一个权重矩阵，它是某个词的特征码（这么说的原因是为了体现特征码接近的词，特征也比较接近）。<br>  而训练过程中调整的模型（skip-gram）的作用是，输入一个词向量，会输出一个与词向量同等规模的向量。<br>  这个向量不一定代表某个词，但可以与正确的输出结果计算损失，然后通过这个损失调整词向量和模型里的参数。emmm，从整体上来看，这个词向量其实也是参数之一。<br>  那么，说到这里，总结一下，Fake Task的真正意图是调整词向量，也就是所谓的权重矩阵，而这个模型本身具有的测试功能除了调整权重矩阵之外，没有别的用途（只就这里来讲）。计算的损失是skip-gram模型的损失，但这个模型后面不会再使用。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjgu9ol910001nsnwd5vqt4zg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cji3xuyr80001k8nwb7nx8bou" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cjgu9ol950002nsnw7vb2sxdp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/hello-world/" data-id="cji3xuyrf0003k8nwggutphxb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -392,9 +396,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
