@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>rnn | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。 这一篇将讨论RNN，关于RNN的模型和一些应用。 1.RNN概述像CNN，训练样本的输入和输出都是比较确定的。">
+<meta name="keywords" content="深度学习，待完善">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rnn">
+<meta property="og:url" content="http://yoursite.com/2018/06/14/rnn/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。 这一篇将讨论RNN，关于RNN的模型和一些应用。 1.RNN概述像CNN，训练样本的输入和输出都是比较确定的。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://iajqs.github.io/img/RNN1.png">
+<meta property="og:updated_time" content="2018-06-14T02:54:23.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rnn">
+<meta name="twitter:description" content="Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。 这一篇将讨论RNN，关于RNN的模型和一些应用。 1.RNN概述像CNN，训练样本的输入和输出都是比较确定的。">
+<meta name="twitter:image" content="https://iajqs.github.io/img/RNN1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-rnn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/14/rnn/" class="article-date">
+  <time datetime="2018-06-14T01:26:04.000Z" itemprop="datePublished">2018-06-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      rnn
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。
+这一篇将讨论RNN，关于RNN的模型和一些应用。
+</code></pre><h1 id="1-RNN概述"><a href="#1-RNN概述" class="headerlink" title="1.RNN概述"></a>1.RNN概述</h1><pre><code>像CNN，训练样本的输入和输出都是比较确定的。CNN能自行提取特征，性能非常优秀，但是如果训练样本是连续的序列，且序列的长短不一，比如基于时间的序列，一段文字等等，我们将主要讨论文字层面的内容。
+下面我们来看RNN的模型。
+</code></pre><h1 id="2-RNN模型"><a href="#2-RNN模型" class="headerlink" title="2.RNN模型"></a>2.RNN模型</h1><pre><code>这里我直接照搬深度学习（圣经）里的内容。
+循环神经网络中一些重要的设计模式包括一下几种：
+（1）每个时间步都有输出，并且隐藏单元之间有循环链接的循环网络，如图1所示。
+（2）每个时间步都产生一个输出，只有当前时刻的输出到下个时刻的隐藏单元之间有循环链接的循环网络，如图2所示。（不懂）
+（3）隐藏单元之间存在会循环链接，但读取整个序列后产生单个输出的循环网络，如图3所示。（不懂）
+</code></pre><p>ps：我的天，除了第一种，其他的都不知道怎么回事。<br><img src="https://iajqs.github.io/img/RNN1.png" alt=""><br><br>    上图中左边是RNN模型没有按时间展开的图，如果按时间序列展开，则是上图中的右边部分。我们重点观察右边部分的图。<br>    这幅图描述了在序列索引号$t$附近RNN的模型。其中：<br>    1）$x^{(t)}$代表在序列索引号$t$时训练样本的输入。同样的，$x^{(t-1)}$和$x^{(t+1)}$代表在序列索引号$t-1$和$t+1$时训练样本的输入。<br>    2）$h^{(t)}$代表在序列索引号$t$时模型的隐藏状态。$h^{(t)}$由$x^{(t)}$和$h^{(t-1)}$共同决定。<br>    3）$o^{(t)}$代表在序列索引号$t$时模型的输出。$o^{(t)}$只由模型当前的隐藏状态$h^{(t)}$决定。<br>    4）$L^{(t)}$代表在序列索引号$t$时模型的损失函数。<br>    5）$y^{(t)}$代表在序列索引号$t$时训练样本序列的真实输出。<br>    6）$U,W,V$这三个矩阵是我们的模型的线性关系参数，它在整个RNN网络中是共享的，这点和DNN很不相同。<br>    也正因为是共享了，它体现了RNN的模型的“循环反馈”的思想。　</p>
+<h1 id="3-RNN前向传播算法"><a href="#3-RNN前向传播算法" class="headerlink" title="3.RNN前向传播算法"></a>3.RNN前向传播算法</h1><h1 id="4-RNN反向传播算法推导"><a href="#4-RNN反向传播算法推导" class="headerlink" title="4.RNN反向传播算法推导"></a>4.RNN反向传播算法推导</h1><h1 id="5-RNN小结"><a href="#5-RNN小结" class="headerlink" title="5.RNN小结"></a>5.RNN小结</h1><pre><code>上面调整参数的细节还没有了解之外，其他任务也算是了解得七七八八了吧，至于上面欠缺的图2，图3，我想等我真的学到的时候再进行添加吧。
+RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DNN一样有梯度小时时的问题，当序列很长的时候问题尤其严重。因此，上面的RNN模型一般不能直接用于应用领域。手写识别以及机器翻译等NLP领域实际应用比较广泛的事基于RNN模型的一个特例LSTM，接下来，将做LSTM的记录。由于目前LSTM的tensorflow版已经记录完成了，接下来的工作就是记录好LSTM的技术理论和流程。
+</code></pre><p>ps：内容基本上都是抄的网络上和书上的，自己总结的东西还是少，只能说任重而道远了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/14/rnn/" data-id="cjidybz630003eknwotneuw44" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/07/perceptron/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">perceptron 感知机</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深入学习/">深入学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/深入学习/" style="font-size: 10px;">深入学习</a> <a href="/tags/深度学习，待完善/" style="font-size: 20px;">深度学习，待完善</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/14/rnn/">rnn</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/07/perceptron/">perceptron 感知机</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/06/以太坊Dapp开发环境配置与实践/">以太坊Dapp开发环境配置与实践</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/03/plan/">记录</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/02/LSTM/">LSTM-tensorflow</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
