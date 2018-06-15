@@ -7,18 +7,18 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: Skip-Gram-&amp;gt;tensorflowdate: 2018-04-30 15:24:22 tags: 深度学习，待完善使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec">
+  <meta name="description" content="title: Skip-Gram-tensorflowdate: 2018-04-30 15:24:22 tags: 深度学习 待完善使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2018/04/30/Skip-Gram/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: Skip-Gram-&amp;gt;tensorflowdate: 2018-04-30 15:24:22 tags: 深度学习，待完善使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec">
+<meta property="og:description" content="title: Skip-Gram-tensorflowdate: 2018-04-30 15:24:22 tags: 深度学习 待完善使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/img/Word2Vec.jpg">
-<meta property="og:updated_time" content="2018-06-14T01:32:37.202Z">
+<meta property="og:updated_time" content="2018-06-15T06:49:25.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="title: Skip-Gram-&amp;gt;tensorflowdate: 2018-04-30 15:24:22 tags: 深度学习，待完善使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec">
+<meta name="twitter:description" content="title: Skip-Gram-tensorflowdate: 2018-04-30 15:24:22 tags: 深度学习 待完善使用工具tensorflowpycharm 什么是Word2Vec和Embeddings？Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是">
 <meta name="twitter:image" content="http://yoursite.com/img/Word2Vec.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -79,8 +79,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<p>title: Skip-Gram-&gt;tensorflow<br>date: 2018-04-30 15:24:22</p>
-<h2 id="tags-深度学习，待完善"><a href="#tags-深度学习，待完善" class="headerlink" title="tags: 深度学习，待完善"></a>tags: 深度学习，待完善</h2><h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><p>tensorflow<br>pycharm</p>
+<p>title: Skip-Gram-tensorflow<br>date: 2018-04-30 15:24:22</p>
+<h2 id="tags-深度学习-待完善"><a href="#tags-深度学习-待完善" class="headerlink" title="tags: 深度学习 待完善"></a>tags: 深度学习 待完善</h2><h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><p>tensorflow<br>pycharm</p>
 <h1 id="什么是Word2Vec和Embeddings？"><a href="#什么是Word2Vec和Embeddings？" class="headerlink" title="什么是Word2Vec和Embeddings？"></a>什么是Word2Vec和Embeddings？</h1><p>Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在空间嵌入到一个新的空间中去。</p>
 <p>我们从直观角度上来理解一下，cat这个单词和kitten属于语义上很相近的词，而dog和kitten则不是那么相近，iphone这个单词和kitten的语义就差的更远了。通过对词汇表中单词进行这种数值表示方式的学习（也就是将单词转换为词向量），能够让我们基于这样的数值进行向量化的操作从而得到一些有趣的结论。比如说，如果我们对词向量kitten、cat以及dog执行这样的操作：kitten - cat + dog，那么最终得到的嵌入向量（embedded vector）将与puppy这个词向量十分相近。</p>
 <h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p><img src="../../../../img/Word2Vec.jpg" alt=""><br><br>Skip-Gram模型的基础形式非常简单，为了更清楚地解释模型，我们先从最一般的基础模型来看Word2Vec（下文中所有的Word2Vec都是指Skip-Gram模型）。</p>
@@ -92,7 +92,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjidzkzfk0004awnwpjna4x75" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjifm66qu00016onwpws76obl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,11 +110,6 @@
       </div>
     </a>
   
-  
-    <a href="/2018/04/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
   
 </nav>
 
@@ -164,7 +159,7 @@
       <ul>
         
           <li>
-            <a href="/2018/06/14/rnn/">rnn</a>
+            <a href="/2018/06/14/RNN/">rnn</a>
           </li>
         
           <li>
