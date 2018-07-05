@@ -16,12 +16,12 @@
 <meta property="og:description" content="由于我是还算是个学业不精的人吧，写总结的能力也不是很强，所以准备直接抄写黄海广博士的笔记和自己看吴恩达老师视频时的一些总结来形成自己的博客，与其说是博客或者笔记什么的，更应该说是一种抄录吧，纯粹是为了加深个人理解和记忆。 第一章[TOC]引言（Introduction）1.1 欢迎参考视频： 1-1 - Welcome.mkv第一个视频主要就讲了什么是机器学习，机器学习能做些什么事情。机器学习是目">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://iajqs.github.io/img/Housing-price.png">
-<meta property="og:image" content="https://iajqs.github.io/img/Housing-price2.png">
-<meta property="og:image" content="https://iajqs.github.io/img/Tumor.png">
-<meta property="og:image" content="https://iajqs.github.io/img/unsupervise.png">
-<meta property="og:image" content="https://iajqs.github.io/img/genes.png">
-<meta property="og:image" content="https://iajqs.github.io/img/cocktail.png">
-<meta property="og:updated_time" content="2018-07-05T06:28:18.070Z">
+<meta property="og:image" content="https://iajqs.github.io/img/Housing-price2.PNG">
+<meta property="og:image" content="https://iajqs.github.io/img/Tumor.PNG">
+<meta property="og:image" content="https://iajqs.github.io/img/unsupervise.PNG">
+<meta property="og:image" content="https://iajqs.github.io/img/genes.PNG">
+<meta property="og:image" content="https://iajqs.github.io/img/cocktail.PNG">
+<meta property="og:updated_time" content="2018-07-05T06:46:15.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习第一章">
 <meta name="twitter:description" content="由于我是还算是个学业不精的人吧，写总结的能力也不是很强，所以准备直接抄写黄海广博士的笔记和自己看吴恩达老师视频时的一些总结来形成自己的博客，与其说是博客或者笔记什么的，更应该说是一种抄录吧，纯粹是为了加深个人理解和记忆。 第一章[TOC]引言（Introduction）1.1 欢迎参考视频： 1-1 - Welcome.mkv第一个视频主要就讲了什么是机器学习，机器学习能做些什么事情。机器学习是目">
@@ -101,14 +101,14 @@
 2. 一些无法通过手动编程来编写的应用：如自然语言处理，计算机视觉
 3. 一些自助式的程序：如推荐系统
 4. 理解人类是如何学习的。
-</code></pre><h2 id="1-3-监督学习"><a href="#1-3-监督学习" class="headerlink" title="1.3 监督学习"></a>1.3 监督学习</h2><p>在课程稍后阶段我们再给监督学习一个更加正式的定义，现在我们从一个例子开始：<br>假设你有下面这些房价数据，图标上的每个实例都是一次房屋交易，横坐标为交易房屋的占地面积，纵坐标为房屋的交易价格。<br><img src="https://iajqs.github.io/img/Housing-price.png" alt=""><br><br>现在，假设你希望能够预测一个750平方英尺的房屋的交易价格可能是多少。一种方法是根据这些数据点的分布，画一条合适的直线，然后根据这条直线来预测。在房价预测这个例子中，一个二次函数可能更适合已有的数据，我们可能会更希望用这个二次函数的曲线来进行预测。<br><img src="https://iajqs.github.io/img/Housing-price2.png" alt=""><br><br>我们称这样的学习为监督学习。称其为监督式，因为我们预先给了算法“正确结果”–即所有我们观察到的变量。<br>上面这个问题又称为回归问题（Regression），因为我们能预测的结果是连续地值。<br>再来看另一种类型的监督学习问题：<br>假使你希望约测一个乳腺癌是否是恶性的，你现在有的数据时不同年龄的病人和她们身上肿瘤的尺寸以及这些肿瘤是否是恶性的。如果我们将这些信息绘制成一张2D图表，以横坐标为肿瘤的尺寸，以纵坐标为病人的年龄，以O代表良性肿瘤，以X代表恶性肿瘤。则我们的算法要学习的问题就变成了如何分割良性肿瘤和恶性肿瘤。<br><img src="https://iajqs.github.io/img/Tumor.png" alt=""><br><br>这样的问题是分类问题（Classification），我们希望算法能够学会如何将数据分类到不同的类里。<br>上面的例子中我们只使用了两个特征（feautres）来进行分类，现实中，我们会有非常多的特征，并且我们希望算法能够处理无限多数量的特征，在课程后面我们会介绍能够处理这样问题的算法，例如支持向量机（Support Vector Machine）。</p>
-<h2 id="1-4-非监督学习"><a href="#1-4-非监督学习" class="headerlink" title="1.4 非监督学习"></a>1.4 非监督学习</h2><p>在监督学习中，无论是回归问题还是分类问题，我们的数据都具有一个结果（房价问题中的房价，肿瘤问题中的良性与否）。<br>而在非监督学习中，我们的现有数据中并没有结果，我们有的只是特征，因而非监督学习要解决的问题是发现这些数据是否可以分为不同的组。<br><img src="https://iajqs.github.io/img/unsupervise.png" alt=""><br><br>非监督学习的一个例子是聚类问题（Clustering），例如对一个大型的数据中心的网络传输数据情况进行分析，发现那些多数时候是在协作的计算机。<br>再一个例子，给定一些人和他们所有的基因，非监督学习可以根据是否具有某些基因而将这些人聚类：<br><img src="https://iajqs.github.io/img/genes.png" alt=""><br><br>图中纵坐标为一个个以及他们的基因，横坐标为各种类型的基因。<br>再一个非监督学习问题的例子是鸡尾酒会问题（Cocktail Party Problem），在一个满是人的房间中，人们都在互相对话，我们使用一些麦克风录下房间中的声音，利用非监督学习算法来识别房间中某一个人所说的话。<br>鸡尾酒会问题的一个简化版本是一个房间中有两个人同时在讲话，利用两个麦克风录音。<br><img src="https://iajqs.github.io/img/cocktail.png" alt=""><br><br>下面这个只有一行的机器学习算法（Octave）可以非常漂亮地将两个人的说话给分离开来：<br>[W,s,v] = svd((repmat(sum(x.<em>x,1),size(x,1),1).</em>x)*x’);</p>
+</code></pre><h2 id="1-3-监督学习"><a href="#1-3-监督学习" class="headerlink" title="1.3 监督学习"></a>1.3 监督学习</h2><p>在课程稍后阶段我们再给监督学习一个更加正式的定义，现在我们从一个例子开始：<br>假设你有下面这些房价数据，图标上的每个实例都是一次房屋交易，横坐标为交易房屋的占地面积，纵坐标为房屋的交易价格。<br><img src="https://iajqs.github.io/img/Housing-price.png" alt=""><br><br>现在，假设你希望能够预测一个750平方英尺的房屋的交易价格可能是多少。一种方法是根据这些数据点的分布，画一条合适的直线，然后根据这条直线来预测。在房价预测这个例子中，一个二次函数可能更适合已有的数据，我们可能会更希望用这个二次函数的曲线来进行预测。<br><img src="https://iajqs.github.io/img/Housing-price2.PNG" alt=""><br><br>我们称这样的学习为监督学习。称其为监督式，因为我们预先给了算法“正确结果”–即所有我们观察到的变量。<br>上面这个问题又称为回归问题（Regression），因为我们能预测的结果是连续地值。<br>再来看另一种类型的监督学习问题：<br>假使你希望约测一个乳腺癌是否是恶性的，你现在有的数据时不同年龄的病人和她们身上肿瘤的尺寸以及这些肿瘤是否是恶性的。如果我们将这些信息绘制成一张2D图表，以横坐标为肿瘤的尺寸，以纵坐标为病人的年龄，以O代表良性肿瘤，以X代表恶性肿瘤。则我们的算法要学习的问题就变成了如何分割良性肿瘤和恶性肿瘤。<br><img src="https://iajqs.github.io/img/Tumor.PNG" alt=""><br><br>这样的问题是分类问题（Classification），我们希望算法能够学会如何将数据分类到不同的类里。<br>上面的例子中我们只使用了两个特征（feautres）来进行分类，现实中，我们会有非常多的特征，并且我们希望算法能够处理无限多数量的特征，在课程后面我们会介绍能够处理这样问题的算法，例如支持向量机（Support Vector Machine）。</p>
+<h2 id="1-4-非监督学习"><a href="#1-4-非监督学习" class="headerlink" title="1.4 非监督学习"></a>1.4 非监督学习</h2><p>在监督学习中，无论是回归问题还是分类问题，我们的数据都具有一个结果（房价问题中的房价，肿瘤问题中的良性与否）。<br>而在非监督学习中，我们的现有数据中并没有结果，我们有的只是特征，因而非监督学习要解决的问题是发现这些数据是否可以分为不同的组。<br><img src="https://iajqs.github.io/img/unsupervise.PNG" alt=""><br><br>非监督学习的一个例子是聚类问题（Clustering），例如对一个大型的数据中心的网络传输数据情况进行分析，发现那些多数时候是在协作的计算机。<br>再一个例子，给定一些人和他们所有的基因，非监督学习可以根据是否具有某些基因而将这些人聚类：<br><img src="https://iajqs.github.io/img/genes.PNG" alt=""><br><br>图中纵坐标为一个个以及他们的基因，横坐标为各种类型的基因。<br>再一个非监督学习问题的例子是鸡尾酒会问题（Cocktail Party Problem），在一个满是人的房间中，人们都在互相对话，我们使用一些麦克风录下房间中的声音，利用非监督学习算法来识别房间中某一个人所说的话。<br>鸡尾酒会问题的一个简化版本是一个房间中有两个人同时在讲话，利用两个麦克风录音。<br><img src="https://iajqs.github.io/img/cocktail.PNG" alt=""><br><br>下面这个只有一行的机器学习算法（Octave）可以非常漂亮地将两个人的说话给分离开来：<br>[W,s,v] = svd((repmat(sum(x.<em>x,1),size(x,1),1).</em>x)*x’);</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>黄海广博士的笔记：<a href="https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes/blob/master/markdown/week1.md" target="_blank" rel="noopener">https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes/blob/master/markdown/week1.md</a><br>小小人_V 的个人笔记 ​ <a href="https://mooc.guokr.com/note/12/" target="_blank" rel="noopener">https://mooc.guokr.com/note/12/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/05/机器学习第一章/" data-id="cjj86onot000eosnwx1sh0r2n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/05/机器学习第一章/" data-id="cjj86tupl000dicnwch6hq99d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
@@ -122,7 +122,7 @@
   
     <a href="/2018/06/14/RNN/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">rnn</div>
+      <div class="article-nav-title">RNN</div>
     </a>
   
 </nav>
@@ -177,7 +177,7 @@
           </li>
         
           <li>
-            <a href="/2018/06/14/RNN/">rnn</a>
+            <a href="/2018/06/14/RNN/">RNN</a>
           </li>
         
           <li>
