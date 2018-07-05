@@ -62,6 +62,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-机器学习第一章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/05/机器学习第一章/" class="article-date">
+  <time datetime="2018-07-05T04:20:03.000Z" itemprop="datePublished">2018-07-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/05/机器学习第一章/">机器学习第一章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于我是还算是个学业不精的人吧，写总结的能力也不是很强，所以准备直接抄写黄海广博士的笔记和自己看吴恩达老师视频时的一些总结来形成自己的博客，与其说是博客或者笔记什么的，更应该说是一种抄录吧，纯粹是为了加深个人理解和记忆。</p>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h1 id="TOC-引言（Introduction）"><a href="#TOC-引言（Introduction）" class="headerlink" title="[TOC]引言（Introduction）"></a>[TOC]引言（Introduction）</h1><h2 id="1-1-欢迎"><a href="#1-1-欢迎" class="headerlink" title="1.1 欢迎"></a>1.1 欢迎</h2><p>参考视频： 1-1 - Welcome.mkv<br>第一个视频主要就讲了什么是机器学习，机器学习能做些什么事情。<br>机器学习是目前信息技术中最激动人心的方向之一。在这门课中，你将学习到这门技术的前沿，并可以自己实现学习机器学习的算法。<br>你或许每天都在不知不觉中使用了机器学习的算法，每次你打开谷歌，必应搜索到你需要的内容，正是因为他们有良好的学习算法。谷歌和微软实现了学习算法来排行网页，每次你用Facebook或苹果的图片分类程序，他能认出你朋友的照片，这也是机器学习。每次您阅读您的电子邮件垃圾邮件筛选器，可以帮你过滤大量的垃圾邮件，这也是一种学习算法。对我来说，我感到激动的原因之一是有一天做出一个和人类一样聪明的机器。实现这个想法任重而道远，许多AI研究者认为，实现这个目标的最好方法是<br>通过让机器试着模仿人的大脑学习，我会在这门课中介绍一点这方面的内容。<br>在这门课中，还讲到学习到关于机器学习的前沿状况。但事实上只了解算法、数学并不能解决你关心的实际问题。所以，我们将花大量的时间做练习，从而你自己能实现每个这些算法，从而了解内部机理。<br>那么，为什么机器学习如此受欢迎呢？原因是，机器学习不只是用于人工智能领域。<br>我们创建智能的机器，有很多基础的知识。比如，我们可以让机器找到A与B之间的最短路径，但我们仍然不知道怎么让机器做更有趣的事情，如web搜索、照片标记、反垃圾邮件。我们发现，唯一方法是让机器自己学习怎么来解决问题。所以，机器学习已经成为计算机的一个能力。<br>现在它涉及到各个行业和基础科学中。我从事于机器学习，但我每个星期都跟直升机飞行员、生物学家、很多计算机系统程序员交流（我在斯坦福大学的同事同时也是这样）和平均每个星期会从硅谷收到两、三个电子邮件，这些联系我的人都对将学习算法应用于他们自己的问题感兴趣。这表明机器学习涉及的我问题非常广泛。有机器人、计算生物学、硅谷中大量的问题都收到机器学习的影响。<br>这里有一些机器学习的案例。比如说，数据库挖掘。机器学习被用于数据挖掘的原因之一是网络和自动化技术的增长，这意味着，我们有史上最大的数据集，比如说，大量的硅谷公司正在收集web上的单击数据，也成为点击流数据，并尝试使用机器学习算法来分析数据，更好的了解用户，并未用户提供更好的服务。这在硅谷有巨大的时长。再比如，医疗记录。随着自动化的出现，我们现在有了电子医疗记录。如果我们可以把医疗记录变成医学知识，我们就可以更好地理解疾病。再如，计算生物学。还是因为自动化技术，生物学家们收集的大量基因数据序列、DNA序列等等，机器运行算法让我们更好地了解人类基因组，大家都知道这对人类意味着什么。再比如，工程方面，在工程的所有领域，我们有越来越大的数据集我们试图使用学习算法，来理解这些数据，另外，在机械应用中，有些人不能直接操作。例如，我已经在无人直升机领域工作了许多年。我们不知道如何写一段程序让直升机自己飞。我们唯一能做的就是让计算机自己学习如何驾驶直升机。<br>手写识别：现在我们能够非常便宜地把信寄到这个美国甚至全世界的原因之一就是当你写一个像这样的信封，一种学习算法已经学会如何读你信封，它可以自动选择路径，所以我们只需要花几个美分把这封信寄到数千英里外。<br>事实上，如果你看到自然语言处理或计算机视觉，这些语言理解或图像理解都是属于AI领域。大部分的自然语言处理和大部分的计算机视觉，都应用了机器学习。学习算法还广泛用于自定制程序。每次你去亚马逊或NetFlix或iTunes Genius，它都会给出其他电影或产品或音乐的建议，这是一种学习算法。仔细想一想，他们有百万的用户；但他们没有办法为百万用户，编写百万个不同程序。软件能给这些自定制的建议的唯一方法是通过学习你的行为，来为你定制服务。<br>最后学习算法被用来理解人类的学习和了解大脑。<br>我们将讨论如何用这些推进我们的AI梦想。几个月前，一名学生给我一片文章关于最顶尖的12个IT技能。拥有了这些技能HR绝对不会拒绝你。这是稍显陈旧的文章，但在这个列表最顶部就是机器学习的技能。<br>在斯坦福大学，招聘人员联系我，让我推荐机器学习学生毕业的人远远多余机器学习的毕业生。所以我认为需求远远没有满足现在“机器学习”非常好，在这门课中，我希望能告诉你们很多机器学习的知识。<br>在接下来的视频中，我们将开始给更正式的定义，什么是机器学习。我们会开始学习机器学习的主要问题和算法，你会了解一些主要的机器学习的术语，并开始了解不同的算法，用哪些算法更合适。</p>
+<h2 id="1-2-机器学习是什么？"><a href="#1-2-机器学习是什么？" class="headerlink" title="1.2 机器学习是什么？"></a>1.2 机器学习是什么？</h2><p>参考视频： 1-2 - What is Machine Learning<br>机器学习是什么？在本视频中，我们会尝试着进行定义，同时让你懂得何时会使用机器学习。实际上，即使是在机器学习的专业人士中，也不存在一个被广泛认可的定义来准确定义机器学习是什么活不是什么，现在我将告诉你一些人们尝试定义的示例。第一个机器学习的定义来自于Arthur Samuel，他定义机器学习为，在进行特定编程的情况下，给予计算机学习能力的领域。Samuel的定义可以回溯到50年代，他编写了一个西洋跳棋程序。这程序神奇之处在于，编程者自己并不是下棋高手。但因为他太菜了，于是就通过编程，让西洋棋程序自己跟自己下了上万盘棋。通过观察哪种布局（棋盘位置）会赢，哪种布局会输，久而久之，这西洋棋程序明白了什么是好的布局，什么样式坏的布局。然后就牛逼大发了，程序通过学习后，玩西洋棋的水平超过了Samuel。这绝对是令人注目的成果。<br>尽管编写者自己是个菜鸟，但因为计算机有着足够的耐心，去下上万盘的棋，没有人有这种耐心下这么多盘棋。通过这些学习，计算机获得无比丰富的经验，于是渐渐称为了比Samuel更厉害的西洋棋手。上述是个有点不正式的定义，也比较古老，另一个年代近一点的定义，由Tom Mitchell提出，来自卡内基梅隆大学，Tom定义的机器学习是一个好的学习问题，定义如下，他说，一个程序被认定为能从经验E中学习，解决任务T，达到性能度量值P，当且仅当，有了经验E后，经过P评判，程序在处理T时的性能有所提升。我认为经验E就是程序上万次的自我练习的经验而任务T就是下棋。性能度量值P呢，就是它在与一些新的对手比赛时，赢得比赛的概率。<br>以一些机器学习的应用举例：</p>
+<pre><code>1. 数据库挖掘
+2. 一些无法通过手动编程来编写的应用：如自然语言处理，计算机视觉
+3. 一些自助式的程序：如推荐系统
+4. 理解人类是如何学习的。
+</code></pre><h2 id="1-3-监督学习"><a href="#1-3-监督学习" class="headerlink" title="1.3 监督学习"></a>1.3 监督学习</h2><p>在课程稍后阶段我们再给监督学习一个更加正式的定义，现在我们从一个例子开始：<br>假设你有下面这些房价数据，图标上的每个实例都是一次房屋交易，横坐标为交易房屋的占地面积，纵坐标为房屋的交易价格。<br><img src="https://iajqs.github.io/img/Housing-price.png" alt=""><br><br>现在，假设你希望能够预测一个750平方英尺的房屋的交易价格可能是多少。一种方法是根据这些数据点的分布，画一条合适的直线，然后根据这条直线来预测。在房价预测这个例子中，一个二次函数可能更适合已有的数据，我们可能会更希望用这个二次函数的曲线来进行预测。<br><img src="https://iajqs.github.io/img/Housing-price2.png" alt=""><br><br>我们称这样的学习为监督学习。称其为监督式，因为我们预先给了算法“正确结果”–即所有我们观察到的变量。<br>上面这个问题又称为回归问题（Regression），因为我们能预测的结果是连续地值。<br>再来看另一种类型的监督学习问题：<br>假使你希望约测一个乳腺癌是否是恶性的，你现在有的数据时不同年龄的病人和她们身上肿瘤的尺寸以及这些肿瘤是否是恶性的。如果我们将这些信息绘制成一张2D图表，以横坐标为肿瘤的尺寸，以纵坐标为病人的年龄，以O代表良性肿瘤，以X代表恶性肿瘤。则我们的算法要学习的问题就变成了如何分割良性肿瘤和恶性肿瘤。<br><img src="https://iajqs.github.io/img/Tumor.png" alt=""><br><br>这样的问题是分类问题（Classification），我们希望算法能够学会如何将数据分类到不同的类里。<br>上面的例子中我们只使用了两个特征（feautres）来进行分类，现实中，我们会有非常多的特征，并且我们希望算法能够处理无限多数量的特征，在课程后面我们会介绍能够处理这样问题的算法，例如支持向量机（Support Vector Machine）。</p>
+<h2 id="1-4-非监督学习"><a href="#1-4-非监督学习" class="headerlink" title="1.4 非监督学习"></a>1.4 非监督学习</h2><p>在监督学习中，无论是回归问题还是分类问题，我们的数据都具有一个结果（房价问题中的房价，肿瘤问题中的良性与否）。<br>而在非监督学习中，我们的现有数据中并没有结果，我们有的只是特征，因而非监督学习要解决的问题是发现这些数据是否可以分为不同的组。<br><img src="https://iajqs.github.io/img/unsupervise.png" alt=""><br><br>非监督学习的一个例子是聚类问题（Clustering），例如对一个大型的数据中心的网络传输数据情况进行分析，发现那些多数时候是在协作的计算机。<br>再一个例子，给定一些人和他们所有的基因，非监督学习可以根据是否具有某些基因而将这些人聚类：<br><img src="https://iajqs.github.io/img/genes.png" alt=""><br><br>图中纵坐标为一个个以及他们的基因，横坐标为各种类型的基因。<br>再一个非监督学习问题的例子是鸡尾酒会问题（Cocktail Party Problem），在一个满是人的房间中，人们都在互相对话，我们使用一些麦克风录下房间中的声音，利用非监督学习算法来识别房间中某一个人所说的话。<br>鸡尾酒会问题的一个简化版本是一个房间中有两个人同时在讲话，利用两个麦克风录音。<br><img src="https://iajqs.github.io/img/cocktail.png" alt=""><br><br>下面这个只有一行的机器学习算法（Octave）可以非常漂亮地将两个人的说话给分离开来：<br>[W,s,v] = svd((repmat(sum(x.<em>x,1),size(x,1),1).</em>x)*x’);</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>黄海广博士的笔记：<a href="https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes/blob/master/markdown/week1.md" target="_blank" rel="noopener">https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes/blob/master/markdown/week1.md</a><br>小小人_V 的个人笔记 ​ <a href="https://mooc.guokr.com/note/12/" target="_blank" rel="noopener">https://mooc.guokr.com/note/12/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/05/机器学习第一章/" data-id="cjj868wr50002w4nwqravuxz2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-RNN" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/14/RNN/" class="article-date">
@@ -101,10 +149,10 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/14/RNN/" data-id="cjifm66po00006onwe06vst6r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/14/RNN/" data-id="cjj868wrd0005w4nwqxzeq89z" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
     </footer>
   </div>
@@ -143,7 +191,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/07/perceptron/" data-id="cjifm66r000036onwhx7kgpeq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/07/perceptron/" data-id="cjj868wrh0007w4nwrn92e6et" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -252,7 +300,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjifm66r400056onwic9wejdi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjj868wrf0006w4nwif4dft89" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li></ul>
@@ -301,7 +349,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjifm66r200046onwlf5i3s20" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjj868wr00001w4nw43ftemuy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,10 +428,10 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjifm66re000b6onwt8fl0n3l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjj868wr80003w4nw58habpii" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
     </footer>
   </div>
@@ -406,7 +454,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
         <hr>
 <p>title: Skip-Gram-tensorflow<br>date: 2018-04-30 15:24:22</p>
-<h2 id="tags-深度学习-待完善"><a href="#tags-深度学习-待完善" class="headerlink" title="tags: 深度学习 待完善"></a>tags: 深度学习 待完善</h2><h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><p>tensorflow<br>pycharm</p>
+<h2 id="tags-深度学习"><a href="#tags-深度学习" class="headerlink" title="tags: 深度学习"></a>tags: 深度学习</h2><h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><p>tensorflow<br>pycharm</p>
 <h1 id="什么是Word2Vec和Embeddings？"><a href="#什么是Word2Vec和Embeddings？" class="headerlink" title="什么是Word2Vec和Embeddings？"></a>什么是Word2Vec和Embeddings？</h1><p>Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在空间嵌入到一个新的空间中去。</p>
 <p>我们从直观角度上来理解一下，cat这个单词和kitten属于语义上很相近的词，而dog和kitten则不是那么相近，iphone这个单词和kitten的语义就差的更远了。通过对词汇表中单词进行这种数值表示方式的学习（也就是将单词转换为词向量），能够让我们基于这样的数值进行向量化的操作从而得到一些有趣的结论。比如说，如果我们对词向量kitten、cat以及dog执行这样的操作：kitten - cat + dog，那么最终得到的嵌入向量（embedded vector）将与puppy这个词向量十分相近。</p>
 <h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p><img src="../../../../img/Word2Vec.jpg" alt=""><br><br>Skip-Gram模型的基础形式非常简单，为了更清楚地解释模型，我们先从最一般的基础模型来看Word2Vec（下文中所有的Word2Vec都是指Skip-Gram模型）。</p>
@@ -418,7 +466,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjifm66qu00016onwpws76obl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjj868wqs0000w4nwew0b6ulo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -441,7 +489,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
     </div>
   </div>
 
@@ -451,7 +499,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/深度学习，待完善/" style="font-size: 20px;">深度学习，待完善</a>
+      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
     </div>
   </div>
 
@@ -460,7 +508,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -471,6 +519,10 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/05/机器学习第一章/">机器学习第一章</a>
+          </li>
         
           <li>
             <a href="/2018/06/14/RNN/">rnn</a>
@@ -486,10 +538,6 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
         
           <li>
             <a href="/2018/05/03/plan/">记录</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/02/LSTM/">LSTM-tensorflow</a>
           </li>
         
       </ul>

@@ -8,7 +8,7 @@
   <title>rnn | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。 这一篇将讨论RNN，关于RNN的模型和一些应用。 1.RNN概述像CNN，训练样本的输入和输出都是比较确定的。">
-<meta name="keywords" content="深度学习，待完善">
+<meta name="keywords" content="深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rnn">
 <meta property="og:url" content="http://yoursite.com/2018/06/14/RNN/index.html">
@@ -16,7 +16,7 @@
 <meta property="og:description" content="Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。 这一篇将讨论RNN，关于RNN的模型和一些应用。 1.RNN概述像CNN，训练样本的输入和输出都是比较确定的。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://iajqs.github.io/img/RNN1.png">
-<meta property="og:updated_time" content="2018-06-14T02:54:23.788Z">
+<meta property="og:updated_time" content="2018-07-05T04:21:45.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rnn">
 <meta name="twitter:description" content="Word2vec理解得比较清晰了，虽然关于CBOW中使用的哈夫曼树的实际作用和操作并没有完全理解清楚，但我感觉那不是我现在应该纠结的东西，我现在的目标是先把已经学了的东西掌握起来，至于这些更加深层的模型优化算法，以后再说了，所以我现在之类存个记录，为word2vec加入一个待完善的标记。 这一篇将讨论RNN，关于RNN的模型和一些应用。 1.RNN概述像CNN，训练样本的输入和输出都是比较确定的。">
@@ -106,16 +106,25 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/14/RNN/" data-id="cjifm66po00006onwe06vst6r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/14/RNN/" data-id="cjj868wrd0005w4nwqxzeq89z" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
 
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/2018/07/05/机器学习第一章/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          机器学习第一章
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/07/perceptron/" id="article-nav-older" class="article-nav-link-wrap">
@@ -139,7 +148,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习，待完善/">深度学习，待完善</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/区块链/">区块链</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
     </div>
   </div>
 
@@ -149,7 +158,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/深度学习，待完善/" style="font-size: 20px;">深度学习，待完善</a>
+      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
     </div>
   </div>
 
@@ -158,7 +167,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
     </div>
   </div>
 
@@ -169,6 +178,10 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/05/机器学习第一章/">机器学习第一章</a>
+          </li>
         
           <li>
             <a href="/2018/06/14/RNN/">rnn</a>
@@ -184,10 +197,6 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
         
           <li>
             <a href="/2018/05/03/plan/">记录</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/02/LSTM/">LSTM-tensorflow</a>
           </li>
         
       </ul>
