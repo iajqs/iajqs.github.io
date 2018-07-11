@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-机器学习第五章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/10/机器学习第五章/" class="article-date">
+  <time datetime="2018-07-10T13:32:12.000Z" itemprop="datePublished">2018-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/10/机器学习第五章/">机器学习第五章</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="5-正则化"><a href="#5-正则化" class="headerlink" title="5. 正则化"></a>5. 正则化</h1><h2 id="5-1-过拟合问题"><a href="#5-1-过拟合问题" class="headerlink" title="5.1 过拟合问题"></a>5.1 过拟合问题</h2><p>如果我们有非常多的特征，我们通过学习得到的假设可能能够非常好地适应训练集（代价函数可能几乎为0），但是可能会不能推广到新的数据。<br>下图是一个回归问题的例：<br><img src="https://iajqs.github.io/img/overfitting.jpg" alt=""><br><br>第一个模型是一个线性模型，低度拟合，不能很好地适应我们的训练集；第三个模型是一个四次方的模型，过度拟合，虽然能非常好地适应我们的训练集但在新输入变量进行预测时可能会效果不好；而中间的模型似乎最合适。</p>
+<p>分类问题中也存在这样的问题：<br><img src="https://iajqs.github.io/img/overfitting2.jpg" alt=""><br></p>
+<p>问题是，如果我们发现了过拟合问题，应该如何处理？<br>1.丢弃一些不能帮助我们正确预测的特征。<br>  可以是手工选择保留哪些特征<br>  或者使用一些模型选择的算法来帮忙（例如PCA）<br>2.正则化。<br>  保留所有的特征，但是减少参数的大小（magnitude）</p>
+<h2 id="5-2-正则化代价函数"><a href="#5-2-正则化代价函数" class="headerlink" title="5.2 正则化代价函数"></a>5.2 正则化代价函数</h2><p>上面的回归问题中如果我们的模型是<br><img src="https://iajqs.github.io/img/rgCostFunction.png" alt=""><br><br>我们决定要减少θ_3和θ_4的大小，我们要做的便是修改代价函数，在其中θ_3和θ_4设置一点惩罚。这样做的话，我们在尝试最小化代价时也需要将这个惩罚纳入考虑中，并最终导致选择较小一些的θ_3和θ_4。修改后的代价函数如下：<br><img src="https://iajqs.github.io/img/rgCostFunction2.png" alt=""><br><br>通过这样的代价函数选择出的θ_3和θ_4对预测结果的影响就比之前要小许多。<br>假如我们有非常多的特征，我们并不知道其中哪些特征我们要惩罚，我们将对所有的特征进行惩罚，并且让代价函数最优化的软件来选择这些惩罚的程度。这样的结果是得到了一个较为简单的能防止过拟合问题的假设：<br><img src="https://iajqs.github.io/img/rgCostFunction3.png" alt=""><br><br>其中λ又称为正则化参数<br>注：根据惯例，我们不对θ<em>0进行惩罚。<br>经过正则化处理的模型与原模型的可能对比如下图所示：<br><img src="https://iajqs.github.io/img/regulated.jpg" alt=""><br><br>如果选择的正则化参数λ过大，则会把所有的参数都最小化了，导致模型变成 h</em>θ(x)=θ_0也就是上图中红色直线所示的情况，造成低度拟合。</p>
+<h2 id="5-3-正则化线性回归"><a href="#5-3-正则化线性回归" class="headerlink" title="5.3 正则化线性回归"></a>5.3 正则化线性回归</h2><p>正则化线性回归的代价函数为：<br><img src="https://iajqs.github.io/img/rgCostFunction3.png" alt=""><br><br>如果我们要使用梯度下降法令这个代价函数最小化，因为我们未对θ_0进行正则化，所以梯度下降算法将分两种情况：<br><img src="https://iajqs.github.io/img/rglCostFunction.png" alt=""><br><br>对上面的算法中j=1,2,…,n时的更新式子进行调整可得：<br><img src="https://iajqs.github.io/img/rglCostFunction2.png" alt=""><br><br>可以看出，正则化线性回归的梯度下降算法的变化在于，每次都在原有算法更新规则的基础上令θ值减少了一个额外的值。<br>我们同样也可以利用正规方程来解正则化线性回归模型，方法如下所示：<br><img src="https://iajqs.github.io/img/rr.png" alt=""><br><br>图中的矩阵尺寸为（n+1）*（n+1）</p>
+<h2 id="5-4-正则化逻辑回归"><a href="#5-4-正则化逻辑回归" class="headerlink" title="5.4 正则化逻辑回归"></a>5.4 正则化逻辑回归</h2><p>同样对于逻辑回归，我们也给代价函数增加一个正则化的表达式，得到：<br><img src="https://iajqs.github.io/img/rglCostFunction3.png" alt=""><br><br>要最小化该代价函数，通过求导，得出梯度下降算法为：<br><img src="https://iajqs.github.io/img/derivativeCostFunction4.png" alt=""><br><br>注：看上去同线性回归一样，但是知道 h_θ(x)=g(θ^TX)，所以与线性回归不同。<br>Octave中，我们依旧可以用fminuc函数来求解代价函数最小化的参数，值得注意的是参数θ_0的更新规则与其他情况不同。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/10/机器学习第五章/" data-id="cjjgl5x53000evknwcxu48mnz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-机器学习第四章" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/08/机器学习第四章/" class="article-date">
@@ -94,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/08/机器学习第四章/" data-id="cjjcsh1rp000cjgnwswqb5yb2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/08/机器学习第四章/" data-id="cjjgl5x5g000kvknwsmn1l3f5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/06/机器学习第三章/" data-id="cjjcsh1rk000ajgnw5v1ufdvo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/06/机器学习第三章/" data-id="cjjgl5x5b000ivknwe8bpcvgg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
@@ -186,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/06/机器学习第二章/" data-id="cjjcsh1rn000bjgnws45iemlb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/06/机器学习第二章/" data-id="cjjgl5x51000dvknwgizo0llb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
@@ -234,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/05/机器学习第一章/" data-id="cjjcsh1rf0007jgnw09cziqpm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/05/机器学习第一章/" data-id="cjjgl5x410004vknwowwa00lx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
@@ -285,7 +329,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/14/rnn/" data-id="cjjcsh1r90004jgnwjy43akn2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/14/rnn/" data-id="cjjgl5x3v0002vknwrlf10f9g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -327,7 +371,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/07/perceptron/" data-id="cjjcsh1rt000fjgnw9qdcsrba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/07/perceptron/" data-id="cjjgl5x3r0001vknw70b8mc8h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -436,7 +480,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjjcsh1rb0005jgnw52o8qvdc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/06/以太坊Dapp开发环境配置与实践/" data-id="cjjgl5x440005vknw1nfn82oy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li></ul>
@@ -485,7 +529,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjjcsh1r60003jgnwgtwwsxbq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/03/plan/" data-id="cjjgl5x3k0000vknwgsilnh7o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -564,7 +608,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjjcsh1qq0000jgnwvo8at81h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/02/LSTM/" data-id="cjjgl5x57000gvknwluq2x7vs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/深度学习/">深度学习</a></li></ul>
@@ -576,43 +620,12 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
 
 
   
-    <article id="post-Skip-Gram" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/30/Skip-Gram/" class="article-date">
-  <time datetime="2018-04-30T07:24:22.887Z" itemprop="datePublished">2018-04-30</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title: Skip-Gram-tensorflow<br>date: 2018-04-30 15:24:22</p>
-<h2 id="tags-深度学习"><a href="#tags-深度学习" class="headerlink" title="tags: 深度学习"></a>tags: 深度学习</h2><h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><p>tensorflow<br>pycharm</p>
-<h1 id="什么是Word2Vec和Embeddings？"><a href="#什么是Word2Vec和Embeddings？" class="headerlink" title="什么是Word2Vec和Embeddings？"></a>什么是Word2Vec和Embeddings？</h1><p>Word2Vec是从大量文本语料中以无监督的方式学习语义知识的一种模型，它被大量地用在自然语言处理（NLP）中。那么它是如何帮助我们做自然语言处理呢？Word2Vec其实就是通过学习文本来用词向量的方式表征词的语义信息，即通过一个嵌入空间使得语义上相似的单词在该空间内距离很近。Embedding其实就是一个映射，将单词从原先所属的空间映射到新的多维空间中，也就是把原先词所在空间嵌入到一个新的空间中去。</p>
-<p>我们从直观角度上来理解一下，cat这个单词和kitten属于语义上很相近的词，而dog和kitten则不是那么相近，iphone这个单词和kitten的语义就差的更远了。通过对词汇表中单词进行这种数值表示方式的学习（也就是将单词转换为词向量），能够让我们基于这样的数值进行向量化的操作从而得到一些有趣的结论。比如说，如果我们对词向量kitten、cat以及dog执行这样的操作：kitten - cat + dog，那么最终得到的嵌入向量（embedded vector）将与puppy这个词向量十分相近。</p>
-<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p><img src="../../../../img/Word2Vec.jpg" alt=""><br><br>Skip-Gram模型的基础形式非常简单，为了更清楚地解释模型，我们先从最一般的基础模型来看Word2Vec（下文中所有的Word2Vec都是指Skip-Gram模型）。</p>
-<p>Word2Vec模型实际上分为了两个部分，第一部分为建立模型，第二部分是通过模型获取嵌入词向量。Word2Vec的整个建模过程实际上与自编码器（auto-encoder）的思想很相似，即先基于训练数据构建一个神经网络，当这个模型训练好以后，我们并不会用这个训练好的模型处理新的任务，我们真正需要的是这个模型通过训练数据所学得的参数，例如隐层的权重矩阵——后面我们将会看到这些权重在Word2Vec中实际上就是我们试图去学习的“word vectors”。基于训练数据建模的过程，我们给它一个名字叫“Fake Task”，意味着建模并不是我们最终的目的。</p>
-<h1 id="从tensorflow上得到需要注意的细节"><a href="#从tensorflow上得到需要注意的细节" class="headerlink" title="从tensorflow上得到需要注意的细节"></a>从tensorflow上得到需要注意的细节</h1><p>《tensorflow实战》的例程：<br>1.先统计训练文本中的所有单词的tf值<br>2.按照tf值进行排序，并用每个词在排序表中下标来表示这个词<br>3.使用embeding的方式将下标转换成一个128为的随机矩阵， 然后后面会通过计算损失函数自动更新这个矩阵， 这个embeding矩阵就代表着这个词<br>4.最后会得到一个训练好的embeding表<br>5.可以通过计算某一个词的下标在embeding表中找到与之相似度较高的词下标</p>
-<hr>
-<h1 id="根据和学长们的讨论，这里很有必要追加一些内容"><a href="#根据和学长们的讨论，这里很有必要追加一些内容" class="headerlink" title="根据和学长们的讨论，这里很有必要追加一些内容"></a>根据和学长们的讨论，这里很有必要追加一些内容</h1><h4 id="这个Fake-Task是训练什么？计算的损失是谁的损失？"><a href="#这个Fake-Task是训练什么？计算的损失是谁的损失？" class="headerlink" title="这个Fake Task是训练什么？计算的损失是谁的损失？"></a>这个Fake Task是训练什么？计算的损失是谁的损失？</h4><p>  前面我们已经知道，我们会将词转换成embeding的形式，然后交给模型去训练，最后我们会得到一个训练好的embeding表。<br>  从整体上来看，这个embeding是一个权重矩阵，它是某个词的特征码（这么说的原因是为了体现特征码接近的词，特征也比较接近）。<br>  而训练过程中调整的模型（skip-gram）的作用是，输入一个词向量，会输出一个与词向量同等规模的向量。<br>  这个向量不一定代表某个词，但可以与正确的输出结果计算损失，然后通过这个损失调整词向量和模型里的参数。emmm，从整体上来看，这个词向量其实也是参数之一。<br>  那么，说到这里，总结一下，Fake Task的真正意图是调整词向量，也就是所谓的权重矩阵，而这个模型本身具有的测试功能除了调整权重矩阵之外，没有别的用途（只就这里来讲）。计算的损失是skip-gram模型的损失，但这个模型后面不会再使用。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/30/Skip-Gram/" data-id="cjjcsh1r00001jgnwlyoojl3f" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -635,7 +648,7 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 20px;">深度学习</a>
+      <a href="/tags/区块链/" style="font-size: 10px;">区块链</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/深度学习/" style="font-size: 15px;">深度学习</a>
     </div>
   </div>
 
@@ -657,6 +670,10 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
       <ul>
         
           <li>
+            <a href="/2018/07/10/机器学习第五章/">机器学习第五章</a>
+          </li>
+        
+          <li>
             <a href="/2018/07/08/机器学习第四章/">机器学习第四章</a>
           </li>
         
@@ -670,10 +687,6 @@ RNN虽然理论上可以很好德解决序列数据的训练，但是它也像DN
         
           <li>
             <a href="/2018/07/05/机器学习第一章/">机器学习第一章</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/14/rnn/">rnn</a>
           </li>
         
       </ul>
